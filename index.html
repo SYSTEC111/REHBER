@@ -1,1 +1,125 @@
+html
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personel İletişim Rehberi</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        h1 {
+            color: #217346; /* Excel Yeşili */
+            margin-top: 0;
+            font-size: 24px;
+            border-bottom: 2px solid #217346;
+            padding-bottom: 10px;
+        }
+        .search-box {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+            box-sizing: border-box;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 15px;
+        }
+        th {
+            background-color: #217346;
+            color: white;
+            text-align: left;
+            padding: 12px 15px;
+            border: 1px solid #1e6b41;
+        }
+        td {
+            padding: 12px 15px;
+            border: 1px solid #dcdcdc;
+            color: #333;
+        }
+        tr:nth-child(even) {
+            background-color: #f9fbf9;
+        }
+        tr:hover {
+            background-color: #e8f5e9;
+        }
+        a {
+            color: #0052cc;
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
 
+<div class="container">
+    <h1>📊 Personel İletişim Listesi</h1>
+    
+    <input type="text" id="aramaKutusu" class="search-box" onkeyup="tabloAra()" placeholder="İsim, ünvan veya telefon numarası ara...">
+
+    <table id="personelTablosu">
+        <thead>
+            <tr>
+                <th>İsim Soyisim</th>
+                <th>Ünvan</th>
+                <th>Telefon No</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- ÇALIŞAN 1 -->
+            <tr>
+                <td>Ahmet Yılmaz</td>
+                <td>İnsan Kaynakları Uzmanı</td>
+                <td><a href="tel:+905320000001">0532 000 00 01</a></td>
+            </tr>
+            <!-- ÇALIŞAN 2 -->
+            <tr>
+                <td>Ayşe Demir</td>
+                <td>Muhasebe Sorumlusu</td>
+                <td><a href="tel:+905320000002">0532 000 00 02</a></td>
+            </tr>
+            <!-- ÇALIŞAN 3 (Yeni kişi eklemek için bu <tr>...</tr> bloğunu kopyalayıp altına yapıştırın) -->
+            <tr>
+                <td>Mehmet Kaya</td>
+                <td>Satış Müdürü</td>
+                <td><a href="tel:+905320000003">0532 000 00 03</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+function tabloAra() {
+    var input = document.getElementById("aramaKutusu");
+    var filter = input.value.toUpperCase();
+    var table = document.getElementById("personelTablosu");
+    var tr = table.getElementsByTagName("tr");
+    for (var i = 1; i < tr.length; i++) {
+        var rowText = tr[i].textContent || tr[i].innerText;
+        if (rowText.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+        } else {
+            tr[i].style.display = "none";
+        }
+    }
+}
+</script>
+
+</body>
+</html>
